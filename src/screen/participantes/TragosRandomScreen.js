@@ -52,19 +52,6 @@ const TragosRandomScreen = ({ navigation }) => {
 
             >
                 <Tab.Item
-                    title="Agregar"
-                    titleStyle={{ fontSize: 12 }}
-                    icon={
-                        <Icon
-                            name="account"
-                            type="material-community"
-                            size={24}
-                            color={'white'}
-                        />
-                    }
-                />
-
-                <Tab.Item
                     title="Iniciar Sorteo"
                     titleStyle={{ fontSize: 12 }}
                     icon={
@@ -79,9 +66,37 @@ const TragosRandomScreen = ({ navigation }) => {
                     }
                 />
 
+
+                <Tab.Item
+                    title="Agregar"
+                    titleStyle={{ fontSize: 12 }}
+                    icon={
+                        <Icon
+                            name="account"
+                            type="material-community"
+                            size={24}
+                            color={'white'}
+                        />
+                    }
+                />
             </Tab>
 
             <TabView value={index} onChange={setIndex} animationType="spring">
+                <TabView.Item style={{ width: '100%' }}>
+                    <ImageBackground
+                        source={require('../../assets/fondoPantalla.png')}
+                        style={{ flex: 1, resizeMode: 'cover' }}
+                        imageStyle={{ opacity: 0.2 }}
+                    >
+                        {items.length > 0 ?
+                                <Roulette items={items} />
+                            :
+                            <Text style={{ textAlign: 'center', color: TEXT_BLACK, fontSize: 25 }}>No hay participantes</Text>
+                        }
+                    </ImageBackground>
+                </TabView.Item>
+
+
                 <TabView.Item style={{ width: '100%' }}>
                     <ImageBackground
                         source={require('../../assets/fondoPantalla.png')}
@@ -126,23 +141,6 @@ const TragosRandomScreen = ({ navigation }) => {
 
 
 
-                    </ImageBackground>
-                </TabView.Item>
-
-
-                <TabView.Item style={{ width: '100%' }}>
-                    <ImageBackground
-                        source={require('../../assets/fondoPantalla.png')}
-                        style={{ flex: 1, resizeMode: 'cover' }}
-                        imageStyle={{ opacity: 0.2 }}
-                    >
-                        {items.length > 0 ?
-                            <GestureHandlerRootView style={{ flex: 1 }}>
-                                <Roulette items={items} />
-                            </GestureHandlerRootView>
-                            :
-                            <Text style={{ textAlign: 'center', color: TEXT_BLACK, fontSize: 25 }}>No hay participantes</Text>
-                        }
                     </ImageBackground>
                 </TabView.Item>
             </TabView>
